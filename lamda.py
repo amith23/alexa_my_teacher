@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
-""" simple fact sample app """
+""" simple alexa invocation"""
 
 from __future__ import print_function
 
 import random
 
-data = [
-    "A year on Mercury is just 88 days long."
-]
-
 SKILL_NAME = "My Teacher"
-GET_FACT_MESSAGE = "Here's your fact: "
 HELP_MESSAGE = "You can say tell me a my teacher, or, you can say exit... What can I help you with?"
 HELP_REPROMPT = "What can I help you with?"
 STOP_MESSAGE = "Goodbye!"
@@ -74,35 +69,26 @@ def resume_session():
     return response(speech_response_with_card(SKILL_NAME, speechOutput,
                                                           cardcontent, True))
 def get_help_response():
-    """ get and return the help string  """
-
     speech_message = HELP_MESSAGE
     return response(speech_response_prompt(speech_message,
                                                        speech_message, False))
 def get_launch_response():
-
     cardcontent = "welcome back Amith. You have one notifications, do you want me to read it for you ?"
     speechOutput = "welcome back Amith. You have one notifications, do you want me to read it for you ?"
-
     return response(speech_response_with_card(SKILL_NAME, speechOutput,
                                                           cardcontent, True))
 
 def read_notifications():
     cardcontent = "You have one assignment, from an introduction to algebra due on today, shall we complete it, or do you want me to resume to your last session ?"
     speechOutput = "You have one assignment, from an introduction to algebra due on today, shall we complete it, or do you want me to resume to your last session chapter 2, key words in introduction to java?"
-
     return response(speech_response_with_card(SKILL_NAME, speechOutput,
                                                           cardcontent, True))
 
 def get_stop_response():
-    """ end the session, user wants to quit the game """
-
     speech_output = STOP_MESSAGE
     return response(speech_response(speech_output, True))
 
 def get_fallback_response():
-    """ end the session, user wants to quit the game """
-
     speech_output = FALLBACK_MESSAGE
     return response(speech_response(speech_output, False))
 
