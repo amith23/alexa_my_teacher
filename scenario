@@ -1,0 +1,14 @@
+script :
+
+User is log in to the my teacher,
+Teacher is greeting user and spellout any notifications available and ask user to confirm for read out notifications.
+User is asking to resume last session
+once current chapter is completed user wanted to take a note from what he has learned.
+note is saved.
+
+
+invocations
+
+alexa open my teacher
+yes,please read notifications from my teacher
+shall we resume to my last session from my teacher
