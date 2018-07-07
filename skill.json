@@ -79,9 +79,16 @@
                     ]
                 },
                 {
-                    "name": "ShortNote",
-                    "slots": [],
-                    "samples": []
+                    "name": "NoteTake",
+                    "slots": [
+                        {
+                            "name": "down",
+                            "type": "AMAZON.Actor"
+                        }
+                    ],
+                    "samples": [
+                        " note {down}"
+                    ]
                 }
             ],
             "types": []

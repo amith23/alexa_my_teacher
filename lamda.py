@@ -43,8 +43,8 @@ def on_intent(request, session):
         return read_notifications()
     elif intent_name == "ResumeSession":
         return resume_session()
-    elif intent_name == "ShortNote":
-        return save_short_note()
+    elif intent_name == "NoteTake":
+        return save_short_note(request['intent'])
     elif intent_name == "AMAZON.HelpIntent":
         return get_help_response()
     elif intent_name == "AMAZON.StopIntent":
@@ -57,9 +57,16 @@ def on_intent(request, session):
         print("invalid Intent reply with help")
         return get_help_response()
 
-def save_short_note():
+def save_short_note(intent):
+
+    print(intent['slots']['down']['value'])
+
+    value = intent['slots']['down']['value']
+    print("+++++++++++++++")
+    print(value)
+    print("+++++++++++++++++++++")
     cardcontent = "Short note saved under this course"
-    speechOutput = "Short note saved under this course"
+    speechOutput = "Short note, "+ value + " , saved under this course"
     return response(speech_response_with_card(SKILL_NAME, speechOutput,
                                                           cardcontent, True))
 
@@ -101,9 +108,16 @@ def on_session_ended():
     #print("on_session_ended")
 
 def on_launch(request):
-    return get_launch_response()
+    return get_launch_response_two()
 
+def get_launch_response_two():
+    print("new method called")
+    cardcontent = "welcome back Amith. You have one notifications, do you want me to read it for you ?"
+    speechOutput = "welcome back Amith. You have one notifications, do you want me to read it for you ?"
 
+    #return dialog_response(True)
+    return response(speech_response_with_card(SKILL_NAME, speechOutput,
+                                                          cardcontent, True))
 # --------------- Speech response handlers -----------------
 
 def speech_response(output, endsession):
@@ -146,6 +160,21 @@ def speech_response_with_card(title, output, cardcontent, endsession):
         },
         'shouldEndSession': endsession
     }
+
+def card_response():
+
+    return {
+        "card": {
+        "type": "Standard",
+        "title": "Ordering a Car",
+        "text": "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
+        "image": {
+            "smallImageUrl": "https://carfu.com/resources/card-images/race-car-small.png",
+            "largeImageUrl": "https://carfu.com/resources/card-images/race-car-large.png"
+            }
+        }
+    }
+
 
 def response_ssml_text_and_prompt(output, endsession, reprompt_text):
     """ create a Ssml response with prompt  """
